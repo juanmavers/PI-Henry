@@ -14,7 +14,7 @@ typesRouter.get("/:id", async (req, res) => {
 }); 
 
 typesRouter.get("/:name", async (req, res) => {
-  const type = await getTypesById(req.params.name);
+  const type = await getTypesByName(req.params.name);
   res.send(type);
 }); 
 

@@ -1,6 +1,6 @@
 const { Pokemon } = require('../db');
 
-const createPokemon = async ({ name, image, life, attack, defense, speed, height, weight }) => {
+const createPokemon = async ({ name, image, life, attack, defense, speed, height, weight}) => {
     let nameMinus = name.toLowerCase();
     const pokemon = await Pokemon.create({
         name: nameMinus, image, life, attack, defense, speed, height, weight
