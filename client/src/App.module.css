@@ -1,0 +1,17 @@
+.App {
+    text-align: center;
+    background-image: url(./bg-img/SI_Pokemon_image1280w.jpg);
+    background-size: cover;
+}
+
+.nav {
+    background-color: #1893b1;
+    opacity: 80%;
+    box-shadow: 10px 10px 5px 0px rgba(35, 20, 109, 0.75);
+    padding: 1em;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    margin-bottom: 1em;
+    border-radius: 10px;
+}

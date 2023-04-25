@@ -34,10 +34,10 @@ module.exports = (sequelize) => {
       type: DataTypes.DECIMAL,
     },
     height: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
     },
     weight: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
     },
     
   },{timestamps: false});

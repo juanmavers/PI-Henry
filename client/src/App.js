@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Route, useLocation } from 'react-router-dom';
 import { Home, Landing, Detail, Form } from "./views";
 import { Nav, PokemonList, Pagination } from './components';
+import style from "./App.module.css";
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className={style.App} >
       {location.pathname !== "/" && <Nav />}
       <Route path="/pokemons">
         <PokemonList pokemon={pokemon} />
@@ -53,7 +54,6 @@ function App() {
       <Route exact path="/detail" component={Detail} />
       <Route exact path="/create" component={Form} />
       <Route path="/home" render={() => <Home />}>
-
       </Route>
     </div>
   );

@@ -9,7 +9,7 @@ pokemonsRouter.get("/", async (req, res) => {
         const pokemon = await getPokemonByName(req.query.name);
         res.send(pokemon);
     } else {
-        const pokemons = await getPokemons(req.body);
+        const pokemons = await getPokemons(req.query.pageNumber);
         res.send(pokemons);
     }
 });
