@@ -12,6 +12,7 @@ const getPokemons = async (name = '', pageNumber = 0, orderBy = "name", sortBy =
         let includeType = {
             model: Type,
             where: {},
+            as: 'types',
             attributes: ["id", "name"]
         };
 

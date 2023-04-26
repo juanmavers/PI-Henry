@@ -43,8 +43,8 @@ const { Pokemon, Type } = sequelize.models;
 
 populateDb(Pokemon, Type);
 
-Pokemon.belongsToMany(Type, {through: 'pokemon_type', timestamps: false });
-Type.belongsToMany(Pokemon, {through: 'pokemon_type', timestamps: false });
+Pokemon.belongsToMany(Type, {as: "types", through: 'pokemon_type', timestamps: false });
+Type.belongsToMany(Pokemon, {as: "pokemons", through: 'pokemon_type', timestamps: false });
 
 module.exports = {
    ...sequelize.models, 
