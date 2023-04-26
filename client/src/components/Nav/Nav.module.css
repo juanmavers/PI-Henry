@@ -3,6 +3,6 @@
     background-color: yellow;
     flex-direction: row;
     justify-content: space-around;
-    border-radius: 15px;
-    border: 1px solid black;
+    border-radius: 30px;
+    border: 5px solid black;
 }

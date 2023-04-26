@@ -18,6 +18,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // backImage: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   defaultValue: '',
+    // },
     life: {
       type: DataTypes.DECIMAL,
       allowNull: false,
@@ -39,7 +44,10 @@ module.exports = (sequelize) => {
     weight: {
       type: DataTypes.DECIMAL,
     },
-    
+    created: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
   },{timestamps: false});
 };
 

@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
-
+import style from "./Landing.module.css"
 
 
 
 const Landing = () => {
 
     return (
-        <div className="App">
+        <div className={style.body}>
                 
-            <h1>Pokémon</h1>
+            <h1>GOTTA CATCH EM' ALL!</h1>
             <Link to="/home">
-                <button>GO</button>
+                <button className={style.button}>GO</button>
             </Link>
         </div>
     )

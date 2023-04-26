@@ -1,0 +1,32 @@
+body {
+    text-align: center;
+    background-image: url(../../bg-img/Cute-Pikachu-Wallpapers-HD-free-desktop.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    font-size: medium;
+}
+
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #112cff;
+    border: none;
+    color: #dcff18;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    padding-left: 1em;
+    width: 80px;
+    transition: all 0.5s;
+    margin: 16px;
+    margin-top: 1em;
+    opacity: 0.75;
+
+}
+
+
+.button:hover {
+    opacity: 100;
+}

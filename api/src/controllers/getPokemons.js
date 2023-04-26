@@ -1,45 +1,66 @@
 const axios = require('axios');
 require('dotenv').config();
 const { API_URL } = process.env;
-const { Pokemon } = require('../db');
+const { Pokemon, Type } = require('../db');
+const { Op } = require('sequelize');
 
+const getPokemons = async (name = '', pageNumber = 0, orderBy = "name", sortBy = "DESC", created = "all", type = "all") => {
+    const pageSize = 12;
+    try {
 
-const getPokemons = async (pageNumber = 0) => {
-        //recibe nro de pagina para matchear al paginado 
-        
-        const pageSize = 12;
-        const pokemonDb = await Pokemon.findAll({ limit: pageSize, offset: pageSize * pageNumber });
-        return (pokemonDb);
+        let where = {};
+        let includeType = {
+            model: Type,
+            where: {},
+            attributes: ["id", "name"]
+        };
+
+        if (name && name.length > 0) {
+            where.name = {
+                [Op.substring]: name.toLowerCase(),
+            };
+        }
+        if (created === "local") {
+            where.created = true;
+        } else if (created === "api") {
+            where.created = false;
+        }
+
+        if (type !== "all") {
+            includeType.where.id = type;
+        }
+
+        const pokemonDb = await Pokemon.findAll(
+            {
+                order: [[orderBy, sortBy]],
+                limit: pageSize,
+                offset: pageSize * pageNumber,
+                where: where,
+                include: [includeType],
+            });
+        const pokemonCount = await Pokemon.count();
+        return {
+            items: pokemonDb,
+            totalPages: Math.ceil(pokemonCount / pageSize)
+        };
+    } catch (error) {
+        throw new Error(`Error al buscar los pokemones en la base de datos: ${error.message}`);
+    }
 }
 
-const getPokemonByName = async (pokemon) => {
-    let nameMinus = pokemon.toLowerCase();
-
-        const response = await axios.get(`${API_URL}/pokemon/${nameMinus}`);
-        const pokemonsDb = await Pokemon.findAll({
-            where: {
-                name: nameMinus,
-            }
-        });
-        const pokemons = [...pokemonsDb, response.data];
-        return pokemons;
-
-    }
-
-    const getPokemonById = async (id) => {
-        
-        const pokemonsDb = await Pokemon.findAll({
+const getPokemonById = async (id) => {
+    try {
+        const pokemon = await Pokemon.findOne({
             where: {
                 id: id,
             }
         });
-        if (pokemonsDb.length !== 0){
-            return pokemonsDb[0];
-        }
-        const response = await axios.get(`${API_URL}/pokemon/${id}`);
-
-        return response.data;
+        return pokemon;
+    } catch (error) {
+        throw new Error(`Error al buscar el pokemon por Id: ${error.message}`);
     }
+}
 
 
-    module.exports = { getPokemons, getPokemonById, getPokemonByName };
+
+module.exports = { getPokemons, getPokemonById };

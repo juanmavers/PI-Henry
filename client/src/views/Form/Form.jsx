@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTypes } from "../../redux/actions";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import style from "./Form.module.css"
 
 const Form = () => {
+    const dispatch = useDispatch();
+    const { types } = useSelector(state => state);
+
+    useEffect(() => {
+        dispatch(getTypes());
+    }, [dispatch])
+
+    console.log("types");
+    console.log(types);
 
     const [form, setForm] = useState({
         name: "",
-        hp: "",
+        image: "",
+        life: "",
         attack: "",
         defense: "",
         speed: "",
@@ -15,7 +28,8 @@ const Form = () => {
 
     const [errors, setErrors] = useState({
         name: "",
-        hp: "",
+        image: "",
+        life: "",
         attack: "",
         defense: "",
         speed: "",
@@ -27,9 +41,9 @@ const Form = () => {
         const property = event.target.name;
         const value = event.target.value;
         
+        setForm({ ...form, [property]: value });
         validate({...form, [property]: value });
         
-        setForm({ ...form, [property]: value });
     }
     
     const validate = (form)=>{
@@ -38,10 +52,15 @@ const Form = () => {
     } else {
         setErrors({...errors, name:"Hay un error en el nombre"});
     }
-    if(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.hp)){
-        setErrors({...errors, hp:""})
+    if(/^[a-z ,.'-]+$/i.test(form.image)){
+        setErrors({...errors, image:""})
     } else {
-        setErrors({...errors, hp:"el campo debe ser numérico, utilizando enteros de 0 a 100"})
+        setErrors({...errors, image:"Hay un error en la imagen"});
+    }
+    if(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.life)){
+        setErrors({...errors, life:""})
+    } else {
+        setErrors({...errors, life:"el campo debe ser numérico, utilizando enteros de 0 a 100"})
     }
     if(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.attack)){
         setErrors({...errors, attack:""})
@@ -72,23 +91,31 @@ const Form = () => {
 
 const submitHandler = (event)=>{
     event.preventDefault();
-    axios.post("http://localhost:3001/pokemons", form)
-    .then(res=>alert(res))
+    console.log("types!!!");
+    console.log(types);
+    console.log(types.slice(0, 2));
+    axios.post("http://localhost:3001/pokemons", {...form, types: types.slice(0, 2)})
+    .then(res=>alert("Pokemon created!"))
     .catch(err=>alert(err))
 }
     
 return (
-        <form onSubmit={submitHandler}>
+        <form className={style.form} onSubmit={submitHandler}>
             <div>
                 <label>Name</label>
                 <input type="text" value={form.name} onChange={changeHandler} name="name" />
-                {errors.email && <span>{errors.name}</span>}
+                <span>{errors.name}</span>
+            </div>
+            <div>
+                <label>Image</label>
+                <input type="text" value={form.image} onChange={changeHandler} name="image" />
+                <span>{errors.image}</span>
             </div>
 
             <div>
-                <label>Hp</label>
-                <input type="text" value={form.hp} onChange={changeHandler} name="hp" />
-                <span>{errors.hp}</span>
+                <label>Life</label>
+                <input type="text" value={form.life} onChange={changeHandler} name="life" />
+                <span>{errors.life}</span>
             </div>
 
             <div>

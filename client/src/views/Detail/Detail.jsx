@@ -1,31 +1,47 @@
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
-import style from "./Detail.module.css";
+import style from "./Detail.module.css"; 
 
 const Detail = () => {
-    const { detailId } = useParams();
-    const [pokemon, setPokemon] = useState({});
     const history = useHistory();
+    const { id } = useParams();
+
+    const [pokemon, setPokemon] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const [shy, setShy] = useState(false);
 
     const handleClick = () => {
         history.goBack();
     }
 
     useEffect(() => {
+        setLoading(true);
+        const url = `http://localhost:3001/pokemons/${id}`;
 
-        const URL_BASE = "http://localhost:3001";
+        axios(url)
+            .then((response) => {
+                setPokemon(response.data);
+                setLoading(false);
+            }).catch((error) => {
+                setLoading(false);
+            });
+    }, [id]);
 
-        axios(`${URL_BASE}/pokemon/${detailId}`)
-            .then((response) => setPokemon(response.data));
-    }, [detailId]);
+    if (loading) {
+        return <div>
+            <h2>Loading...</h2>
+        </div>
+    }
+
     return (
         <div>
-            {pokemon.name ? (
+            {pokemon ? (
                 <>
                     <h2>{pokemon.name}</h2>
-                    <img src={pokemon.sprites.front_default} alt="img" />
-                    <p>Hp: {pokemon.life}</p>
+                    <img src={shy ? pokemon.backImage : pokemon.image} alt="img" />
+                    <p>Life: {pokemon.life}</p>
                     <p>Attack: {pokemon.attack}</p>
                     <p>Defense: {pokemon.defense}</p>
                     <p>Speed: {pokemon.speed}</p>
@@ -33,10 +49,15 @@ const Detail = () => {
                     <p>Height: {pokemon.height}</p>
                 </>
             ) : (
-                <h2>Loading...</h2>
+                <h2>Pokemon not found</h2>
             )}
+            {pokemon && <button
+                className={style.button}
+                onClick={() => setShy(!shy)}>
+                {shy ? 'Shy mode: ON' : 'Shy mode: OFF'}
+            </button>}
             <button
-                className={style.searchButton}
+                className={style.button}
                 onClick={handleClick}>
                 Back
             </button>
