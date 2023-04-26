@@ -8,7 +8,7 @@ const Card = ({pokemon}) => {
             <Link to={`/detail/${pokemon.id}`}>
             <h4 className={style.h4}>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h4>
             </Link>
-            <img src={pokemon.image}></img>
+            <img height={120} width={120} src={pokemon.image}></img>
             {pokemon && pokemon.types.map(type => 
             <span>
                 {type.name}
