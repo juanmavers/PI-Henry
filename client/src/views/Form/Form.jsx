@@ -8,12 +8,11 @@ const Form = () => {
     const dispatch = useDispatch();
     const { types } = useSelector(state => state);
 
+    const [selectedTypes, setSelectedTypes] = useState([]);
+
     useEffect(() => {
         dispatch(getTypes());
     }, [dispatch])
-
-    console.log("types");
-    console.log(types);
 
     const [form, setForm] = useState({
         name: "",
@@ -36,70 +35,67 @@ const Form = () => {
         weight: "",
         height: ""
     });
-    
+
     const changeHandler = (event) => {
         const property = event.target.name;
         const value = event.target.value;
-        
-        setForm({ ...form, [property]: value });
-        validate({...form, [property]: value });
-        
-    }
-    
-    const validate = (form)=>{
-    if(/^[a-z ,.'-]+$/i.test(form.name)){
-        setErrors({...errors, name:""})
-    } else {
-        setErrors({...errors, name:"Hay un error en el nombre"});
-    }
-    if(/^[a-z ,.'-]+$/i.test(form.image)){
-        setErrors({...errors, image:""})
-    } else {
-        setErrors({...errors, image:"Hay un error en la imagen"});
-    }
-    if(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.life)){
-        setErrors({...errors, life:""})
-    } else {
-        setErrors({...errors, life:"el campo debe ser numérico, utilizando enteros de 0 a 100"})
-    }
-    if(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.attack)){
-        setErrors({...errors, attack:""})
-    } else {
-        setErrors({...errors, attack:"el campo debe ser numérico, utilizando enteros de 0 a 100"})
-    }
-    if(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.defense)){
-        setErrors({...errors, defense:""})
-    } else {
-        setErrors({...errors, defense:"el campo debe ser numérico, utilizando enteros de 0 a 100"})
-    }
-    if(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.speed)){
-        setErrors({...errors, speed:""})
-    } else {
-        setErrors({...errors, speed:"el campo debe ser numérico, utilizando enteros de 0 a 100"})
-    }
-    if(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.weight)){
-        setErrors({...errors, weight:""})
-    } else {
-        setErrors({...errors, weight:"el campo debe ser numérico, utilizando enteros de 0 a 100"})
-    }
-    if(/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.height)){
-        setErrors({...errors, height:""})
-    } else {
-        setErrors({...errors, height:"el campo debe ser numérico, utilizando enteros de 0 a 100"})
-    }
-}
 
-const submitHandler = (event)=>{
-    event.preventDefault();
-    console.log("types!!!");
-    console.log(types);
-    console.log(types.slice(0, 2));
-    axios.post("http://localhost:3001/pokemons", {...form, types: types.slice(0, 2)})
-    .then(res=>alert("Pokemon created!"))
-    .catch(err=>alert(err))
-}
-    
-return (
+        setForm({ ...form, [property]: value });
+        validate({ ...form, [property]: value });
+
+    }
+
+    const validate = (form) => {
+        if (/^[a-z ,.'-]+$/i.test(form.name)) {
+            setErrors({ ...errors, name: "" })
+        } else {
+            setErrors({ ...errors, name: "Hay un error en el nombre" });
+        }
+        if (/^[a-z ,.'-]+$/i.test(form.image)) {
+            setErrors({ ...errors, image: "" })
+        } else {
+            setErrors({ ...errors, image: "Hay un error en la imagen" });
+        }
+        if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.life)) {
+            setErrors({ ...errors, life: "" })
+        } else {
+            setErrors({ ...errors, life: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+        }
+        if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.attack)) {
+            setErrors({ ...errors, attack: "" })
+        } else {
+            setErrors({ ...errors, attack: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+        }
+        if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.defense)) {
+            setErrors({ ...errors, defense: "" })
+        } else {
+            setErrors({ ...errors, defense: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+        }
+        if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.speed)) {
+            setErrors({ ...errors, speed: "" })
+        } else {
+            setErrors({ ...errors, speed: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+        }
+        if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.weight)) {
+            setErrors({ ...errors, weight: "" })
+        } else {
+            setErrors({ ...errors, weight: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+        }
+        if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.height)) {
+            setErrors({ ...errors, height: "" })
+        } else {
+            setErrors({ ...errors, height: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+        }
+    }
+
+    const submitHandler = (event) => {
+        event.preventDefault();
+        axios.post("http://localhost:3001/pokemons", { ...form, types: selectedTypes })
+            .then(res => alert("Pokemon created!"))
+            .catch(err => alert(err))
+    }
+
+    return (
         <form className={style.form} onSubmit={submitHandler}>
             <div>
                 <label>Name</label>
@@ -147,6 +143,34 @@ return (
                 <input type="text" value={form.height} onChange={changeHandler} name="height" />
                 <span>{errors.height}</span>
             </div>
+
+            <div>
+                <label>Types</label>
+                {types.map((type) =>
+                    <div>
+                        <p>{type.name}</p>
+                        <input type="checkbox" name={`type-${type.id}`}
+                        checked={
+                            selectedTypes.some(t => t.id === type.id)
+                        }
+                        onChange={
+                            (e) => {
+                                if (selectedTypes.some(t => t.id === type.id)) {
+                                    setSelectedTypes(selectedTypes.filter(t => t.id !== type.id));
+                                }
+                                else if (selectedTypes.length < 2) {
+                                    setSelectedTypes([...selectedTypes, type]);
+                                } else {
+                                    setSelectedTypes([selectedTypes[1], type]);
+                                }
+                            }
+                        }
+                        />
+                    </div>
+                )}
+            </div>
+
+
 
             <button type="submit">SUBMIT</button>
         </form>

@@ -40,7 +40,7 @@ const Detail = () => {
             {pokemon ? (
                 <>
                     <h2>{pokemon.name}</h2>
-                    <img src={shy ? pokemon.backImage : pokemon.image} alt="img" />
+                    <img height={250} width={250} src={shy ? pokemon.backImage : pokemon.image} alt="img" />
                     <p>Life: {pokemon.life}</p>
                     <p>Attack: {pokemon.attack}</p>
                     <p>Defense: {pokemon.defense}</p>
