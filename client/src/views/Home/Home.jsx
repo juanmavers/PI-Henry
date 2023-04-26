@@ -41,6 +41,7 @@ const Home = () => {
             <Pagination
                 goToPrevPage={() => setCurrentPage(currentPage - 1)}
                 goToNextPage={() => setCurrentPage(currentPage + 1)}
+                goToPage={(page) => setCurrentPage(page)}
                 currentPage={currentPage}
                 lastPage={pokemons.totalPages}
             />

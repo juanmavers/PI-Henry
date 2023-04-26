@@ -46,46 +46,48 @@ const Form = () => {
     }
 
     const validate = (form) => {
+        let newErrors = errors;
         if (/^[a-z ,.'-]+$/i.test(form.name)) {
-            setErrors({ ...errors, name: "" })
+            newErrors = { ...newErrors, name: "" }
         } else {
-            setErrors({ ...errors, name: "Hay un error en el nombre" });
+            newErrors = { ...newErrors, name: "Hay un error en el nombre" };
         }
-        if (/^[a-z ,.'-]+$/i.test(form.image)) {
-            setErrors({ ...errors, image: "" })
+        if (/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/.test(form.image)) {
+            newErrors = { ...newErrors, image: "" }
         } else {
-            setErrors({ ...errors, image: "Hay un error en la imagen" });
+            newErrors = { ...newErrors, image: "Hay un error en la imagen" };
         }
         if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.life)) {
-            setErrors({ ...errors, life: "" })
+            newErrors = { ...newErrors, life: "" }
         } else {
-            setErrors({ ...errors, life: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+            newErrors = { ...newErrors, life: "el campo debe ser numérico, utilizando enteros de 0 a 100" }
         }
         if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.attack)) {
-            setErrors({ ...errors, attack: "" })
+            newErrors = { ...newErrors, attack: "" }
         } else {
-            setErrors({ ...errors, attack: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+            newErrors = { ...newErrors, attack: "el campo debe ser numérico, utilizando enteros de 0 a 100" }
         }
         if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.defense)) {
-            setErrors({ ...errors, defense: "" })
+            newErrors = { ...newErrors, defense: "" }
         } else {
-            setErrors({ ...errors, defense: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+            newErrors = { ...newErrors, defense: "el campo debe ser numérico, utilizando enteros de 0 a 100" }
         }
         if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.speed)) {
-            setErrors({ ...errors, speed: "" })
+            newErrors = { ...newErrors, speed: "" }
         } else {
-            setErrors({ ...errors, speed: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+            newErrors = { ...newErrors, speed: "el campo debe ser numérico, utilizando enteros de 0 a 100" }
         }
         if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.weight)) {
-            setErrors({ ...errors, weight: "" })
+            newErrors = { ...newErrors, weight: "" }
         } else {
-            setErrors({ ...errors, weight: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+            newErrors = { ...newErrors, weight: "el campo debe ser numérico, utilizando enteros de 0 a 100" }
         }
         if (/^(?:100(?:\.0{1,2})?|\d{1,2}(?:\.\d{1,2})?)$/.test(form.height)) {
-            setErrors({ ...errors, height: "" })
+            newErrors = { ...newErrors, height: "" }
         } else {
-            setErrors({ ...errors, height: "el campo debe ser numérico, utilizando enteros de 0 a 100" })
+            newErrors = { ...newErrors, height: "el campo debe ser numérico, utilizando enteros de 0 a 100" }
         }
+        setErrors(newErrors);
     }
 
     const submitHandler = (event) => {
@@ -172,7 +174,18 @@ const Form = () => {
 
 
 
-            <button type="submit">SUBMIT</button>
+            <button type="submit" disabled={
+                form.name === "" ||
+                errors.name !== "" ||
+                errors.image !== "" ||
+                errors.life !== "" ||
+                errors.attack !== "" ||
+                errors.defense !== "" ||
+                errors.speed !== "" ||
+                errors.weight !== "" ||
+                errors.height !== "" ||
+                selectedTypes.length === 0
+            }>SUBMIT</button>
         </form>
     )
 }
