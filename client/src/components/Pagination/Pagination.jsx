@@ -5,6 +5,9 @@ import axios from "axios";
 export default function Pagination({ goToPrevPage, goToNextPage, goToPage, currentPage, lastPage }) {
     const buttons = [];
 
+    console.log("lastPage");
+    console.log(lastPage);
+
     for (let i = 0; i < lastPage; i++) {
         buttons.push(
             <button onClick={() => goToPage(i)}>{i + 1}</button>

@@ -31,18 +31,18 @@ const getPokemons = async (name = '', pageNumber = 0, orderBy = "name", sortBy =
             includeType.where.id = type;
         }
 
-        const pokemonDb = await Pokemon.findAll(
+        const {rows, count} = await Pokemon.findAndCountAll(
             {
                 order: [[orderBy, sortBy]],
                 limit: pageSize,
                 offset: pageSize * pageNumber,
                 where: where,
                 include: [includeType],
+                distinct: true
             });
-        const pokemonCount = await Pokemon.count();
         return {
-            items: pokemonDb,
-            totalPages: Math.ceil(pokemonCount / pageSize)
+            items: rows,
+            totalPages: Math.ceil(count / pageSize)
         };
     } catch (error) {
         throw new Error(`Error al buscar los pokemones en la base de datos: ${error.message}`);
