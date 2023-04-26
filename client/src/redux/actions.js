@@ -15,8 +15,6 @@ export const getTypes = () => {
     return async function (dispatch) {
         const apiData = await axios.get(`http://localhost:3001/types`);
         const types = apiData.data;
-        console.log("types in action");
-        console.log(types);
         dispatch({ type: GET_TYPES, payload: types });
     };
 };

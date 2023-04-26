@@ -36,20 +36,20 @@ const Detail = () => {
     }
 
     return (
-        <div>
+        <div className={style.detail}>
             {pokemon ? (
                 <>
-                    <h2>{pokemon.name}</h2>
+                    <h2 className={style.h2}>{pokemon.name}</h2>
                     <img height={250} width={250} src={shy ? pokemon.backImage : pokemon.image} alt="img" />
-                    <p>Life: {pokemon.life}</p>
-                    <p>Attack: {pokemon.attack}</p>
-                    <p>Defense: {pokemon.defense}</p>
-                    <p>Speed: {pokemon.speed}</p>
-                    <p>Weight: {pokemon.weight}</p>
-                    <p>Height: {pokemon.height}</p>
+                    <p className={style.p}>Life: {pokemon.life}</p>
+                    <p className={style.p}>Attack: {pokemon.attack}</p>
+                    <p className={style.p}>Defense: {pokemon.defense}</p>
+                    <p className={style.p}>Speed: {pokemon.speed}</p>
+                    <p className={style.p}>Weight: {pokemon.weight}</p>
+                    <p className={style.p}>Height: {pokemon.height}</p>
                 </>
             ) : (
-                <h2>Pokemon not found</h2>
+                <h2 h2 className={style.h2}>Pokemon not found</h2>
             )}
             {pokemon && <button
                 className={style.button}

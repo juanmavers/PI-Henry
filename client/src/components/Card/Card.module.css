@@ -1,6 +1,6 @@
 .card {
-    background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
-    opacity: 100%;
+    background: linear-gradient(to right, rgb(223, 244, 146), rgb(35, 81, 107));
+    opacity: 100;
     margin: 40px auto;
     max-width: 400px;
     text-align: center;
@@ -28,4 +28,17 @@
     margin: 10px;
     font-family: Century Gothic, sans-serif;
     text-align: right;
+}
+
+.h4 {
+    font-size: 25px;
+    color: #ffc107;
+    text-shadow:
+        -1px -1px 0 #2196f3,
+        1px -1px 0 #2196f3,
+        -1px 1px 0 #2196f3,
+        1px 1px 0 #2196f3;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
 }

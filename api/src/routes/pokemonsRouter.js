@@ -15,7 +15,6 @@ pokemonsRouter.get("/:id", async (req, res) => {
 });
 
 pokemonsRouter.post("/", async (req, res) => {
-    console.log("creating new pokemon!!!");
     const pokemon = await createPokemon(req.body);
     res.send(pokemon);
 });

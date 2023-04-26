@@ -1,12 +1,8 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import axios from "axios";
+import style from "./Pagination.module.css";
 
 export default function Pagination({ goToPrevPage, goToNextPage, goToPage, currentPage, lastPage }) {
     const buttons = [];
-
-    console.log("lastPage");
-    console.log(lastPage);
 
     for (let i = 0; i < lastPage; i++) {
         buttons.push(
@@ -15,7 +11,7 @@ export default function Pagination({ goToPrevPage, goToNextPage, goToPage, curre
     }
 
     return (
-        <div className="pagination">
+        <div className={style.pagination}>
             <button onClick={goToPrevPage} disabled={currentPage === 0}>←</button>
             {buttons}
             <button onClick={goToNextPage} disabled={currentPage === lastPage - 1}>→</button>

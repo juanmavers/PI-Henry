@@ -146,35 +146,29 @@ const Form = () => {
                 <span>{errors.height}</span>
             </div>
 
-            <div>
-                <label>Types</label>
-                {types.map((type) =>
-                    <div>
-                        <p>{type.name}</p>
-                        <input type="checkbox" name={`type-${type.id}`}
-                        checked={
-                            selectedTypes.some(t => t.id === type.id)
-                        }
-                        onChange={
-                            (e) => {
-                                if (selectedTypes.some(t => t.id === type.id)) {
-                                    setSelectedTypes(selectedTypes.filter(t => t.id !== type.id));
-                                }
-                                else if (selectedTypes.length < 2) {
-                                    setSelectedTypes([...selectedTypes, type]);
-                                } else {
-                                    setSelectedTypes([selectedTypes[1], type]);
-                                }
-                            }
-                        }
-                        />
-                    </div>
-                )}
+            <div className={style.typesContainer}>
+                <label>Select types</label>
+                <div className={style.types}>
+                    {types.map((type) =>
+                        <div key={type.id} className={style.type}>
+                            <p className={style.typeName}>{type.name}</p>
+                            <input type="checkbox" name={`type-${type.id}`}
+                                checked={selectedTypes.some(t => t.id === type.id)}
+                                onChange={(e) => {
+                                    if (selectedTypes.some(t => t.id === type.id)) {
+                                        setSelectedTypes(selectedTypes.filter(t => t.id !== type.id));
+                                    } else if (selectedTypes.length < 2) {
+                                        setSelectedTypes([...selectedTypes, type]);
+                                    } else {
+                                        setSelectedTypes([selectedTypes[1], type]);
+                                    }
+                                }} />
+                        </div>
+                    )}
+                </div>
             </div>
 
-
-
-            <button type="submit" disabled={
+            <button className={style.button} type="submit" disabled={
                 form.name === "" ||
                 errors.name !== "" ||
                 errors.image !== "" ||

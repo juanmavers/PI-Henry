@@ -6,23 +6,18 @@ const parsePokemonFromApi = require('../helpers/parsePokemon');
 const populateDb = async (Pokemon, Type) => {
     try {
         const response = await axios.get(`${API_URL}/type`);
-        // console.log("populating types");
-        // console.log(response.data);
+
         const typeNames = response.data.results.map(type => {
             return {
                 name: type.name
             }
         });
-        // console.log("typeNames");
-        // console.log(typeNames);
+
         await Type.bulkCreate(typeNames);
     }catch(error){
         console.error("Error llenando base de datos con types", error.message)
     }
 
-    // const typesitos = await Type.findAll();
-    // console.log("typesitos");
-    // console.log(typesitos);
 
     try {
         const response = await axios.get(`${API_URL}/pokemon?limit=60`);
@@ -44,17 +39,6 @@ const populateDb = async (Pokemon, Type) => {
                 await pokemon.addType(type);
             }
         }
-
-    //  const pokemoncitos = await Pokemon.findAll(
-    //         {
-    //             include: [{
-    //                 model: Type,
-    //                 as: 'types',
-    //                 attributes: ["id", "name"]
-    //             }],
-    //         });
-    // console.log("pokemoncitos");
-    // console.log(pokemoncitos);
     }catch(error){
         console.error("Error llenando base de datos con pokemons", error.message)
     }
