@@ -23,7 +23,7 @@
 </pre>
 </div>  
 
-<h3>This is a Pokémon app that connects to a self-hosted server and database. Pokémon information is fetched from an external API! 🤯</h3>
+<h3>This is a Pokémon React App that connects to a self-hosted server and database. Pokémon data is fetched from an external API! 🤯</h3>
  
 <span>
 <h3>⚡Features:</h3>
