@@ -1,47 +1,51 @@
 <h1>Pokémon</h1> 
 <span></span>
 
-<h3>Este es el proyecto individual realizado en Abril de 2023 en el bootcamp Henry.</h3>
+<h3>This is the individual project completed in April 2023 at Henry Bootcamp.</h3>
 <div align="center">  
-<p>⬜⬜⬜⬜⬜⬛⬛⬛⬛⬜⬜⬜⬜⬜</p>
-<p>⬜⬜⬜⬛⬛🟥🟥🟥🟥🟥⬛⬜⬜⬜</p>
-<p>⬜⬜⬛🟥🟥🟥🟥🟥🟥🟥🟥⬛⬜⬜</p>
-<p>⬜⬛🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥⬛⬜</p>
-<p>⬜⬛🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥⬛⬜</p>
-<p>⬛🟥🟥🟥🟥🟥⬛⬛🟥🟥🟥🟥🟥⬛</p>
-<p>⬛🟥🟥🟥🟥⬛⬜⬜⬛🟥🟥🟥🟥⬛</p>
-<p>⬛⬛⬛⬛⬛⬛⬜⬜⬛⬛⬛⬛⬛⬛</p>
-<p>⬛⬜⬜⬜⬜⬜⬛⬛⬜⬜⬜⬜⬜⬛</p>
-<p>⬜⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬛⬜</p>
-<p>⬜⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬛⬜</p>
-<p>⬜⬜⬛⬜⬜⬜⬜⬜⬜⬜⬜⬛⬜⬜</p>
-<p>⬜⬜⬜⬛⬛⬜⬜⬜⬜⬛⬛⬜⬜⬜</p>
-<p>⬜⬜⬜⬜⬜⬛⬛⬛⬛⬜⬜⬜⬜⬜ </p>
+<pre>
+<code>
+⬜⬜⬜⬜⬜⬛⬛⬛⬛⬜⬜⬜⬜⬜
+⬜⬜⬜⬛⬛🟥🟥🟥🟥🟥⬛⬜⬜⬜
+⬜⬜⬛🟥🟥🟥🟥🟥🟥🟥🟥⬛⬜⬜
+⬜⬛🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥⬛⬜
+⬜⬛🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥⬛⬜
+⬛🟥🟥🟥🟥🟥⬛⬛🟥🟥🟥🟥🟥⬛
+⬛🟥🟥🟥🟥⬛⬜⬜⬛🟥🟥🟥🟥⬛
+⬛⬛⬛⬛⬛⬛⬜⬜⬛⬛⬛⬛⬛⬛
+⬛⬜⬜⬜⬜⬜⬛⬛⬜⬜⬜⬜⬜⬛
+⬜⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬛⬜
+⬜⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬛⬜
+⬜⬜⬛⬜⬜⬜⬜⬜⬜⬜⬜⬛⬜⬜
+⬜⬜⬜⬛⬛⬜⬜⬜⬜⬛⬛⬜⬜⬜
+⬜⬜⬜⬜⬜⬛⬛⬛⬛⬜⬜⬜⬜⬜
+</code>
+</pre>
 </div>  
 
- <p>Se trata de una app de Pokémon, que a través de un server propio conecta a una base de datos también propia, la información de los Pokémones se consume de una API externa. </p>
+<p>This is a Pokémon app that connects to a self-hosted server and database. Pokémon information is fetched from an external API.</p>
  
 <span>
- <h3>Features</h3>
+<h3>Features</h3>
 </span>
 
- <ul>
- <li>View Landing</li>
- <li>View Home</li>
- <li>View Detail</li>
- <li>View Form</li>
- <li>Search Bar</li>
- <li>Paginación</li>
- <li>Filtros y ordenamientos</li>
- <li>Back-End consumiendo API externa</li>
- <li>Formularios controlados y validaciones</li>
- <li>Manejo de errores en el código</li>
- <li>Modularización y refactorización del código siguiendo las buenas prácticas</li>
- </ul>
+<ul>
+<li>View Landing</li>
+<li>View Home</li>
+<li>View Detail</li>
+<li>View Form</li>
+<li>Search Bar</li>
+<li>Pagination</li>
+<li>Filters and Sorting</li>
+<li>Back-End consuming external API</li>
+<li>Controlled Forms and Validations</li>
+<li>Error Handling in the code</li>
+<li>Code modularization and refactoring following best practices</li>
+</ul>
 
 
-<span><h3>La app se encuentra en la branch "develop"</h3></span>
+<span><h3>The app can be found in the "develop" branch</h3></span>
 
 
 
-<span><h2>App is located on branch "develop"</h2></span>
+<span><h2>App is located on the "develop" branch</h2></span>
