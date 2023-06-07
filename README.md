@@ -43,9 +43,4 @@
 <li>Code modularization and refactoring following best practices</li>
 </ul>
 
-
-<span><h3>The app can be found in the "develop" branch</h3></span>
-
-
-
 <span><h2>App is located on the "develop" branch</h2></span>
