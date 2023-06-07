@@ -1,7 +1,7 @@
 <h1>Pokémon</h1> 
 <span></span>
 
-<h2>Este es el proyecto individual realizado en Abril de 2023 en el bootcamp Henry.</h2>
+<h3>Este es el proyecto individual realizado en Abril de 2023 en el bootcamp Henry.</h3>
 
 <p>⬜⬜⬜⬜⬜⬛⬛⬛⬛⬜⬜⬜⬜⬜</p>
 <p>⬜⬜⬜⬛⬛🟥🟥🟥🟥🟥⬛⬜⬜⬜</p>
